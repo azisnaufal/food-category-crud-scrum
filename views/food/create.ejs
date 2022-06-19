@@ -1,0 +1,36 @@
+<%- include('../includes/header'); %>
+
+    <div class="container">
+        <h2>Add Food</h2>
+
+        <form action="/food/store" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+                <input type="text" name="name" class="form-control" id="name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="id_category" class="form-label">Category <span class="text-danger">*</span></label>
+                <select name="id_category" id="id_category" class="form-control" required>
+                    <option value="">- Choose Category -</option>
+                    <% cotegories.forEach(cotegory => { %>
+                    <option value="<%= cotegory.id  %>"><%= cotegory.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+              
+            <div class="mb-3">
+                <label for="ingredients" class="form-label">Ingredients <span class="text-danger">*</span></label>
+                <textarea name="ingredients" id="ingredients" cols="10" rows="5" class="form-control" required></textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="directions" class="form-label">Directions <span class="text-danger">*</span></label>
+                <textarea name="directions" id="directions" cols="10" rows="5" class="form-control" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+<%- include('../includes/footer'); %>
