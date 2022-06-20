@@ -1,0 +1,34 @@
+<%- include('../includes/header'); %>
+
+  <div class="container">
+    <h1>Edit Food</h1>
+    <form action="/food/<%= food.id %>/edit/" method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= food.name %>">
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Category</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="id_category">
+            <% categories.forEach(category => { %>
+            <option  <%= category.id === food.id_category? "selected" : "" %> value="<%= category.id %>"><%= category.name %></option>
+            <% }); %>
+          </select>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Ingredients</label>
+        <textarea class="form-control" id="content" rows="3" name="ingredients"><%= food.ingredients %></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Directions</label>
+        <textarea class="form-control" id="content" rows="3" name="directions"><%= food.directions %></textarea>
+      </div>
+      <button class="btn btn-primary">
+        Submit
+      </button>
+    </form>
+  
+
+  </div>
+
+  <%- include('../includes/footer'); %>

@@ -1,13 +1,73 @@
 <%- include('../includes/header'); %>
 
-  <div class="container">
-    <h1>Hello World!</h1>
-    
-    <div class="mb-4">
-        <a href="/food/create" class="btn btn-outline-primary me-2">+ Add Food</a>
-        <a href="/category" class="btn btn-primary">Category</a>
-    </div>
-    
-  </div>
+<div class="container">
+    <h1>All Post</h1>
+    <a href="/food/create">
+      <button class="btn btn-outline-primary me-2">
+        +Add Food
+      </button>
+    </a>
+
+    <a href="/categories">
+    <button class="btn btn-primary">
+        Manage Categories
+      </button>
+    </a>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Ingredients</th>
+          <th>Directions</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% foods.forEach(food => { %>
+          <tr>
+            <td><%= food.id %></td>
+            <td><%= food.name %></td>
+            <td><%= food.Category.name %></td>
+            <td><%= food.ingredients %></td>
+            <td><%= food.directions %></td>
+            <td>
+              <a href="/food/<%= food.id %>/edit">
+                <button class="btn btn-primary">
+                  Edit
+                </button>
+              </a>
+              <!-- <a href="/posts/<%= food.id %>/delete"> -->
+              <button onclick="hapus(<%= food.id %>)" class="btn btn-danger">
+                Delete
+              </button>
+              <!-- Sweet alert -->
+              <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+              <script type="text/javascript">
+                function hapus(id) {
+                  console.log(id)
+                  swal({
+                      title: "Are you sure?",
+                      text: "Once deleted, you will not be able to recover this data!",
+                      icon: "warning",
+                      buttons: true,
+                      dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                      if (willDelete) {
+                        window.location.href = "/food/"+id+"/delete/";
+                      } 
+                    });
+                }
+              </script>
+              </a>
+            </td>
+          </tr>
+          <% }); %>
+      </tbody>
+    </table>
+</div>
 
 <%- include('../includes/footer'); %>
