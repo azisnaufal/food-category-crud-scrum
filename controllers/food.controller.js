@@ -3,7 +3,17 @@ const Food = require("../models/Food");
 
 module.exports = {
     index: async (req, res) => {
-        return res.render('food/index');
+        const foods = await Food.findAll(
+            {
+                include:[
+                    {model: Category}
+                ]
+            }
+        );
+
+        return res.render('food/index',{
+            foods
+        });
     },
 
     create: async (req, res) => {
@@ -21,4 +31,40 @@ module.exports = {
 
         return res.redirect('/');
     },
+    
+    edit: async (req, res) => {
+        const food = await Food.findOne({
+          where: { 
+            id: req.params.id_category
+          }
+        });
+
+        const categories = await Category.findAll();
+        return res.render('food/edit', {
+          food,categories
+        });
+    },
+
+    update: async (req, res) => {
+        await Food.update({
+          name : req.body.name,
+          id_category : req.body.id_category,
+          ingredients : req.body.ingredients,
+          directions : req.body.directions,
+        }, {
+          where : {
+            id: req.params.id
+          }
+        });
+    
+        return res.redirect('/');
+      }, 
+      delete: async (req, res) =>{
+        await Food.destroy({
+          where:{
+            id: req.params.id_category
+          }
+        })
+        return res.redirect('/')
+      }
 };
