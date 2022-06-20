@@ -2,11 +2,14 @@ const Category = require("../models/Category");
 
 module.exports = {
     index: async (req, res) => {
-        
+        const categories = await Category.findAll();
+        return res.render('category/index',{
+          categories
+        })
     },
 
     create: async (req, res) => {
-      
+      return res.render('category/create');
     },
 
     store: async (req, res) => {
@@ -35,5 +38,13 @@ module.exports = {
         });
     
         return res.redirect('/category');
+      },
+      delete : async(req, res) =>{
+        await Category.destroy({
+          where: {
+            id: req.params.id
+          }
+        })
+        return res.redirect('/categories')
       },
 };
