@@ -53,6 +53,6 @@ module.exports = {
             id: req.params.id
           }
         })
-        return res.redirect('/categories')
+        return res.redirect('/category')
       },
 };
