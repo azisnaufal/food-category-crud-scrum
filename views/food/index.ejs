@@ -1,17 +1,13 @@
 <%- include('../includes/header'); %>
 
 <div class="container">
-    <h1>All Post</h1>
-    <a href="/food/create">
-      <button class="btn btn-outline-primary me-2">
-        +Add Food
-      </button>
-    </a>
+    <h1>All Food</h1>
 
-    <a href="/category">
-    <button class="btn btn-primary">
+    <a href="/food/create" class="btn btn-outline-primary me-2">
+        +Add Food
+    </a>
+    <a href="/category" class="btn btn-primary">
         Manage Categories
-      </button>
     </a>
 
     <table class="table">
@@ -34,10 +30,8 @@
             <td><%= food.ingredients %></td>
             <td><%= food.directions %></td>
             <td>
-              <a href="/food/<%= food.id %>/edit">
-                <button class="btn btn-primary">
+              <a href="/food/<%= food.id %>/edit" class="btn btn-primary">
                   Edit
-                </button>
               </a>
               <!-- <a href="/posts/<%= food.id %>/delete"> -->
               <button onclick="hapus(<%= food.id %>)" class="btn btn-danger">
