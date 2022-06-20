@@ -13,4 +13,7 @@ router.get('/food/:id/edit', foodController.edit);
 router.post('/food/:id/edit', foodController.update);
 router.get('/category/:id/edit', categoryController.edit);
 router.post('/category/:id/edit', categoryController.update);
+router.get('/food/:id/delete', foodController.delete);
+router.get('/category/:id/delete', categoryController.delete);
+router.get('/category', categoryController.index);
 module.exports = router;
