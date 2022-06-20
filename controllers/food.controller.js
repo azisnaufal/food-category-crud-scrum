@@ -35,7 +35,7 @@ module.exports = {
     edit: async (req, res) => {
         const food = await Food.findOne({
           where: { 
-            id: req.params.id 
+            id: req.params.id_category
           }
         });
 
@@ -58,5 +58,13 @@ module.exports = {
         });
     
         return res.redirect('/');
-      },
+      }, 
+      delete: async (req, res) =>{
+        await Food.destroy({
+          where:{
+            id: req.params.id_category
+          }
+        })
+        return res.redirect('/')
+      }
 };
