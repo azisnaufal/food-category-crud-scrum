@@ -6,7 +6,7 @@ const Category = require('../models/Category');
 const router = require('express').Router();
 
 
-router.get('/', foodController.index);
+router.get('/', indexController.index);
 router.get('/food/create', foodController.create);
 router.post('/food/store', foodController.store);
 router.get('/food/:id/edit', foodController.edit);
